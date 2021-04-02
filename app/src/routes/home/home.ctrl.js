@@ -1,15 +1,42 @@
 'use strict';
+
 // 컨트롤러
 
-const home = (req, res) => {
-  res.render("home/index");
+const User = require("../../models/User");
+
+const output = {
+  home: (req, res) => {
+    res.render("home/index");
+  },
+
+  login: (req, res) => {
+    let session = req.session;
+
+    res.render("home/login", {
+      session: session
+    });
+  },
+
+  register: (req, res) => {
+    res.render("home/register");
+  }
 };
 
-const login = (req, res) => {
-  res.render("home/login");
+const process = {
+  login: async (req, res) => {
+    const user = new User(req.body);
+    const response = await user.login();
+    return res.json(response);
+  },
+  register: async (req, res) => {
+    const user = new User(req.body);
+    const response = await user.register();
+    return res.json(response);
+  },
 };
+
 
 module.exports = {
-  home,
-  login
+  output,
+  process
 }
