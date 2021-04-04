@@ -17,12 +17,16 @@
       <div class="box">
         <div class="container">
           <div id="home" class="form">
-            <h2>Welcome</h2>
-            <form>
-              <div class="inputBox">
-                <p id="button">LOGOUT</p>
-              </div>
-            </form>
+            <% if(data) %>
+              <h1>
+                <%= data %>님
+              </h1>
+              <h2>Welcome</h2>
+              <form>
+                <div class="inputBox">
+                  <p id="button">LOGOUT</p>
+                </div>
+              </form>
           </div>
         </div>
       </div>

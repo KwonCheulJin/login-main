@@ -4,17 +4,20 @@
 
 const User = require("../../models/User");
 
+
 const output = {
   home: (req, res) => {
-    res.render("home/index");
+    res.render("home/index", { data: req.session.nickname });
   },
 
   login: (req, res) => {
-    let session = req.session;
+    res.render("home/login");
+  },
 
-    res.render("home/login", {
-      session: session
-    });
+  logout: (req, res) => {
+    req.session.destroy((err) => {
+      res.redirect("/login");
+    })
   },
 
   register: (req, res) => {
@@ -25,7 +28,7 @@ const output = {
 const process = {
   login: async (req, res) => {
     const user = new User(req.body);
-    const response = await user.login();
+    const response = await user.login(req, res);
     return res.json(response);
   },
   register: async (req, res) => {
