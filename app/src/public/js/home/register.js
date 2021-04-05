@@ -15,7 +15,7 @@ function signUp() {
     pw: pw.value,
     pwConfirm: pwConfirm.value
   };
-  console.log(req);
+  // console.log(req);
   fetch("/register", {
     method: "POST",
     headers: {

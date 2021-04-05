@@ -7,7 +7,6 @@ const ctrl = require("./home.ctrl");
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
-
 router.use(session({
   secret: 'chkfxkfktm',
   resave: false,
