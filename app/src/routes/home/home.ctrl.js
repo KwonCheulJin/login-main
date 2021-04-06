@@ -11,6 +11,9 @@ const output = {
   },
 
   login: (req, res) => {
+    if (req.session.is_logined) {
+      res.redirect("/");
+    }
     res.render("home/login");
   },
 
